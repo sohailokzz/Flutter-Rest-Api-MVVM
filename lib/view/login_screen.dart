@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rest_api_mvvp/utils/utilis.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,6 +11,18 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Center(
+        child: InkWell(
+          onTap: () {
+            Utlis.flushBarShowMessage(
+              'Flus Bar message',
+              context,
+            );
+          },
+          child: const Text('Click Me'),
+        ),
+      ),
+    );
   }
 }
