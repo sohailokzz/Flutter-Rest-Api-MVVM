@@ -3,6 +3,15 @@ import 'package:another_flushbar/flushbar_route.dart';
 import 'package:flutter/material.dart';
 
 class Utlis {
+  static void fieldFocusNode(
+    BuildContext context,
+    FocusNode currentNode,
+    FocusNode nextNode,
+  ) {
+    currentNode.unfocus();
+    FocusScope.of(context).requestFocus(nextNode);
+  }
+
   static void flushBarShowMessage(String message, BuildContext context) {
     showFlushbar(
       context: context,
