@@ -24,12 +24,14 @@ class RoundButton extends StatelessWidget {
           color: AppColor.buttonColor,
         ),
         child: Center(
-          child: Text(
-            title,
-            style: const TextStyle(
-              color: AppColor.whiteColor,
-            ),
-          ),
+          child: isLoading
+              ? const CircularProgressIndicator.adaptive()
+              : Text(
+                  title,
+                  style: const TextStyle(
+                    color: AppColor.whiteColor,
+                  ),
+                ),
         ),
       ),
     );
