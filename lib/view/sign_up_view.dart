@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rest_api_mvvp/resources/components/round_button.dart';
-import 'package:rest_api_mvvp/utils/routes/route_names.dart';
-import 'package:rest_api_mvvp/view_model/auth_view_model.dart';
 
+import '../resources/components/round_button.dart';
+import '../utils/routes/route_names.dart';
 import '../utils/utilis.dart';
+import '../view_model/auth_view_model.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpViewState extends State<SignUpView> {
   ValueNotifier<bool> obsecurePassword = ValueNotifier<bool>(true);
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   FocusNode emailFocus = FocusNode();
   FocusNode passwordFocus = FocusNode();
-
   @override
   Widget build(BuildContext context) {
     final authViewModel = Provider.of<AuthViewModel>(context);
@@ -36,13 +35,13 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             TextFormField(
               controller: _emailController,
-              focusNode: emailFocus,
               keyboardType: TextInputType.emailAddress,
+              focusNode: emailFocus,
               decoration: const InputDecoration(
                 hintText: 'Email',
                 labelText: 'Email',
                 prefixIcon: Icon(
-                  Icons.email_sharp,
+                  Icons.email_outlined,
                 ),
               ),
               onFieldSubmitted: (value) {
@@ -85,8 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
               height: height * .1,
             ),
             RoundButton(
-              title: 'Login',
-              isLoading: authViewModel.loading,
+              title: 'Sign Up',
+              isLoading: authViewModel.signUpLoading,
               onPress: () {
                 if (_emailController.text.isEmpty) {
                   Utlis.flushBarShowMessage('Please Enter Email', context);
@@ -100,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     'password': _passwordController.text.toString(),
                   };
 
-                  authViewModel.loginApi(data, context);
+                  authViewModel.signUpApi(data, context);
                   print('api hit');
                 }
               },
@@ -110,9 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, RoutesName.signup);
+                Navigator.pushNamed(context, RoutesName.login);
               },
-              child: const Text("Don't have account? Sign Up"),
+              child: const Text("Already have account? Sign In"),
             ),
           ],
         ),
