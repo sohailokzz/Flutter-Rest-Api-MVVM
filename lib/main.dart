@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rest_api_mvvp/utils/routes/routes.dart';
 import 'package:rest_api_mvvp/view_model/auth_view_model.dart';
+import 'package:rest_api_mvvp/view_model/user_view_model.dart';
 
 import 'utils/routes/route_names.dart';
 
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => AuthViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => UserViewModel(),
         ),
       ],
       child: MaterialApp(
